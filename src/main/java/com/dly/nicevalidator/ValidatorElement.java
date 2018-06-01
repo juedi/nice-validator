@@ -8,19 +8,19 @@ package com.dly.nicevalidator;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class ValidatorElement {
+public class ValidatorElement<T> {
 
 	/**属性名*/
 	private String attribute;
 	
 	/**属性值*/
-	private Object value;
+	private T value;
 	
 	/**校验器链，每个属性会由多个校验器进行校验*/
 	private ValidatorChain chain;
 	
 
-	public ValidatorElement(String attribute, Object value, ValidatorChain chain) {
+	public ValidatorElement(String attribute, T value, ValidatorChain chain) {
 		this.attribute = attribute;
 		this.value = value;
 		this.chain = chain;
@@ -38,11 +38,11 @@ public class ValidatorElement {
 		this.attribute = attribute;
 	}
 
-	public Object getValue() {
+	public T getValue() {
 		return value;
 	}
 
-	public void setValue(Object value) {
+	public void setValue(T value) {
 		this.value = value;
 	}
 

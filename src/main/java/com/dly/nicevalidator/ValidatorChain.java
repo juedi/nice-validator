@@ -14,7 +14,7 @@ public class ValidatorChain {
 		this.iterator = validators.iterator();
 	}
 	
-	public void validate(ValidatorContext context, ValidatorElement element) {
+	public <T> void validate(ValidatorContext context, ValidatorElement<T> element) {
 		if(iterator.hasNext()) {
 			iterator.next().validate(context, this, element);
 		}

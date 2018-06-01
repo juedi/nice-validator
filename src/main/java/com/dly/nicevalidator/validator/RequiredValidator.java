@@ -1,4 +1,10 @@
-package com.dly.nicevalidator;
+package com.dly.nicevalidator.validator;
+
+import com.dly.nicevalidator.ErrorMsg;
+import com.dly.nicevalidator.Validator;
+import com.dly.nicevalidator.ValidatorChain;
+import com.dly.nicevalidator.ValidatorContext;
+import com.dly.nicevalidator.ValidatorElement;
 
 /**
  * @typename RequiredValidator
@@ -8,12 +14,12 @@ package com.dly.nicevalidator;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class RequiredValidator implements Validator {
+public class RequiredValidator implements Validator<Object> {
 
 	@Override
-	public boolean validate(ValidatorContext context, ValidatorChain chain, ValidatorElement element) {
+	public boolean validate(ValidatorContext context, ValidatorChain chain, ValidatorElement<Object> element) {
 		if(element.getValue() == null) {
-			context.addError(element.getAttribute() + "不可为空");
+			context.addError(new ErrorMsg(element.getAttribute(), "不可为空"));
 			return false;
 		}
 		else {

@@ -37,27 +37,30 @@ public class ValidatorContext {
      * @param key	键
      * @param value 值
      */
-    public void setAttribute(String key, Object value) {
+    public void addAttribute(String key, Object value) {
         if (attributes == null) {
             attributes = new HashMap<>();
         }
         attributes.put(key, value);
     }
     
+    public void addAttributes(Map<String, Object> attributes) {
+        if (attributes == null) {
+            attributes = new HashMap<>();
+        }
+        attributes.putAll(attributes);
+    }
+    
     /**
      * 代理validationResult添加错误信息
      * @param error 错误信息
      */
-    public void addError(String error) {
+    public void addError(ErrorMsg error) {
     	this.result.addError(error);
     }
 
 	public Map<String, Object> getAttributes() {
 		return attributes;
-	}
-
-	public void setAttributes(Map<String, Object> attributes) {
-		this.attributes = attributes;
 	}
 
 	public ValidationResult getResult() {

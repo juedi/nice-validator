@@ -8,7 +8,7 @@ package com.dly.nicevalidator;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface Validator {
+public interface Validator<T> {
 
-	boolean validate(ValidatorContext context, ValidatorChain chain, ValidatorElement element);
+	boolean validate(ValidatorContext context, ValidatorChain chain, ValidatorElement<T> element);
 }

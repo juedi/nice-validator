@@ -17,23 +17,23 @@ public class ValidationResult {
 	private boolean success = true;
 	
 	/**验证的错误信息*/
-	private List<String> errors = new ArrayList<>();
+	private List<ErrorMsg> errors;
 	
 	@Override
 	public String toString() {
-		return "ValidationResult [success=" + success + ", errors=" + errors + "]";
+		return "{\"success\":" + success + ", \"errors\":" + errors + "}";
 	}
 	
 	/**
 	 * 添加错误信息
 	 * @param error 错误信息
 	 */
-	public void addError(String error) {
+	public void addError(ErrorMsg error) {
 		if(errors == null) {
 			errors = new ArrayList<>();
 		}
 		errors.add(error);
-		this.success = false;
+		setSuccess(false);
 	}
 
 	public boolean isSuccess() {
@@ -44,11 +44,8 @@ public class ValidationResult {
 		this.success = success;
 	}
 
-	public List<String> getErrors() {
+	public List<ErrorMsg> getErrors() {
 		return errors;
 	}
 
-	public void setErrors(List<String> errors) {
-		this.errors = errors;
-	}
 }

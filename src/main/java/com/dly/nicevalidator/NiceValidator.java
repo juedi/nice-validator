@@ -2,6 +2,7 @@ package com.dly.nicevalidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @typename NiceValidator
@@ -15,30 +16,48 @@ public class NiceValidator {
 	
 	private ValidatorContext validatorContext = new ValidatorContext();
 	
-	private List<ValidatorElement> validatorElements;
+	private List<ValidatorElement<?>> validatorElements;
 	
 	private boolean failFast = true;
 	
-	private NiceValidator(List<ValidatorElement> validatorElements) {
+	private NiceValidator(List<ValidatorElement<?>> validatorElements) {
 		this.validatorElements = validatorElements;
 	}
 	
-	public static NiceValidator build(ValidatorElement ...ValidatorElement) {
-		List<ValidatorElement> validatorList = new ArrayList<>();
-		for(ValidatorElement validatorElement : ValidatorElement) {
+	public static NiceValidator build(ValidatorElement<?> ...validatorElements) {
+		List<ValidatorElement<?>> validatorList = new ArrayList<>();
+		for(ValidatorElement<?> validatorElement : validatorElements) {
 			validatorList.add(validatorElement);
 		}
-		return new NiceValidator(validatorList);
+		return build(validatorList);
 	}
 	
-	public NiceValidator failFast(boolean failFast) {
-		this.failFast = failFast;
+	public static NiceValidator build(List<ValidatorElement<?>> validatorElements) {
+		return new NiceValidator(validatorElements);
+	}
+	
+	public NiceValidator failFast() {
+		this.failFast = true;
 		return this;
 	}
 	
+	public NiceValidator failOver() {
+		this.failFast = false;
+		return this;
+	}
+	
+	public NiceValidator addAttributeToContext(String attribure, Object value) {
+		this.validatorContext.addAttribute(attribure, value);
+		return this;
+	}
+	
+	public NiceValidator addAttributesToContext(Map<String, Object> attributes) {
+		this.validatorContext.addAttributes(attributes);
+		return this;
+	}
 	
 	public ValidationResult doValidator() {
-		for(ValidatorElement validatorElement : validatorElements) {
+		for(ValidatorElement<?> validatorElement : validatorElements) {
 			
 			validatorElement.validate(validatorContext);
 			
