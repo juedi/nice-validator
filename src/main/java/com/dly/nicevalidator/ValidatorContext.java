@@ -3,6 +3,9 @@ package com.dly.nicevalidator;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.dly.nicevalidator.domain.ErrorInfo;
+import com.dly.nicevalidator.domain.ValidateResult;
+
 /**
  * @typename ValidatorContext
  * @brief 校验器上下文 
@@ -18,7 +21,7 @@ public class ValidatorContext {
      */
     private Map<String, Object> attributes;
     
-    private ValidationResult result = new ValidationResult();
+    private ValidateResult result = new ValidateResult();
     
     /**
      * 获取属性
@@ -55,7 +58,7 @@ public class ValidatorContext {
      * 代理validationResult添加错误信息
      * @param error 错误信息
      */
-    public void addError(ErrorMsg error) {
+    public void addError(ErrorInfo error) {
     	this.result.addError(error);
     }
 
@@ -63,11 +66,11 @@ public class ValidatorContext {
 		return attributes;
 	}
 
-	public ValidationResult getResult() {
+	public ValidateResult getResult() {
 		return result;
 	}
 
-	public void setResult(ValidationResult result) {
+	public void setResult(ValidateResult result) {
 		this.result = result;
 	}
     

@@ -1,23 +1,23 @@
-package com.dly.nicevalidator;
+package com.dly.nicevalidator.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @typename ValidationResult
+ * @typename ValidateResult
  * @brief 验证结果
  * @author dly
  * @date 2018年5月31日 下午2:05:09
  * @version 1.0.0
  * @since 1.0.0
  */
-public class ValidationResult {
+public class ValidateResult {
 
 	/**是否验证成功*/
 	private boolean success = true;
 	
 	/**验证的错误信息*/
-	private List<ErrorMsg> errors;
+	private List<ErrorInfo> errors;
 	
 	@Override
 	public String toString() {
@@ -28,7 +28,7 @@ public class ValidationResult {
 	 * 添加错误信息
 	 * @param error 错误信息
 	 */
-	public void addError(ErrorMsg error) {
+	public void addError(ErrorInfo error) {
 		if(errors == null) {
 			errors = new ArrayList<>();
 		}
@@ -44,7 +44,7 @@ public class ValidationResult {
 		this.success = success;
 	}
 
-	public List<ErrorMsg> getErrors() {
+	public List<ErrorInfo> getErrors() {
 		return errors;
 	}
 

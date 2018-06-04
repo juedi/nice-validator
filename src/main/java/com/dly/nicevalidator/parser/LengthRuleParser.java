@@ -3,6 +3,7 @@ package com.dly.nicevalidator.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.dly.nicevalidator.RuleParser;
 import com.dly.nicevalidator.Validator;
 import com.dly.nicevalidator.exception.ParseException;
 import com.dly.nicevalidator.validator.LengthValidator;
@@ -27,7 +28,7 @@ public class LengthRuleParser implements RuleParser {
 	private static final Pattern LENGTH_REG_BW = Pattern.compile("length\\((\\d+)~(\\d+)\\)");
 	
 	@Override
-	public Validator<?> parse(String ruleExpression) {
+	public Validator parse(String ruleExpression) {
 		if(LENGTH_REG_EQ.matcher(ruleExpression).matches()) {
 			Matcher matcher = LENGTH_REG_EQ.matcher(ruleExpression);
 			if(matcher.find()) {

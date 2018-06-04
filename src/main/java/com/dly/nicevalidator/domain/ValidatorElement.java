@@ -1,4 +1,7 @@
-package com.dly.nicevalidator;
+package com.dly.nicevalidator.domain;
+
+import com.dly.nicevalidator.ValidatorChain;
+import com.dly.nicevalidator.ValidatorContext;
 
 /**
  * @typename ValidatorElement
@@ -8,20 +11,20 @@ package com.dly.nicevalidator;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class ValidatorElement<T> {
+public class ValidatorElement {
 
 	/**属性名*/
-	private String attribute;
+	private String attributeName;
 	
 	/**属性值*/
-	private T value;
+	private Object value;
 	
 	/**校验器链，每个属性会由多个校验器进行校验*/
 	private ValidatorChain chain;
 	
 
-	public ValidatorElement(String attribute, T value, ValidatorChain chain) {
-		this.attribute = attribute;
+	public ValidatorElement(String attributeName, Object value, ValidatorChain chain) {
+		this.attributeName = attributeName;
 		this.value = value;
 		this.chain = chain;
 	}
@@ -30,19 +33,19 @@ public class ValidatorElement<T> {
 		chain.validate(context, this);
 	}
 	
-	public String getAttribute() {
-		return attribute;
+	public String getAttributeName() {
+		return attributeName;
 	}
 
-	public void setAttribute(String attribute) {
-		this.attribute = attribute;
+	public void setAttributeName(String attributeName) {
+		this.attributeName = attributeName;
 	}
 
-	public T getValue() {
+	public Object getValue() {
 		return value;
 	}
 
-	public void setValue(T value) {
+	public void setValue(Object value) {
 		this.value = value;
 	}
 

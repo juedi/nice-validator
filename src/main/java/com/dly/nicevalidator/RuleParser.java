@@ -1,6 +1,4 @@
-package com.dly.nicevalidator.parser;
-
-import com.dly.nicevalidator.Validator;
+package com.dly.nicevalidator;
 
 /**
  * @typename RuleParser
@@ -17,5 +15,5 @@ public interface RuleParser {
 	 * @param ruleExpression 校验规则表达式
 	 * @return 校验器
 	 */
-	Validator<?> parse(String ruleExpression);
+	Validator parse(String ruleExpression);
 }

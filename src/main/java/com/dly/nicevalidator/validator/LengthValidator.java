@@ -1,10 +1,10 @@
 package com.dly.nicevalidator.validator;
 
-import com.dly.nicevalidator.ErrorMsg;
 import com.dly.nicevalidator.Validator;
 import com.dly.nicevalidator.ValidatorChain;
 import com.dly.nicevalidator.ValidatorContext;
-import com.dly.nicevalidator.ValidatorElement;
+import com.dly.nicevalidator.domain.ErrorInfo;
+import com.dly.nicevalidator.domain.ValidatorElement;
 
 /**
  * @typename LengthValidator
@@ -14,7 +14,7 @@ import com.dly.nicevalidator.ValidatorElement;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class LengthValidator implements Validator<String>{
+public class LengthValidator implements Validator{
 
 	private int min;
 	
@@ -37,31 +37,30 @@ public class LengthValidator implements Validator<String>{
 	
 
 	@Override
-	public boolean validate(ValidatorContext context, ValidatorChain chain, ValidatorElement<String> element) {
-		System.out.println(context.getAttribute("birthday"));
+	public boolean validate(ValidatorContext context, ValidatorChain chain, ValidatorElement element) {
 		if(element.getValue() == null && min != 0){
-			context.addError(new ErrorMsg(element.getAttribute(), "请填写至少" + min + "个字符"));
+			context.addError(new ErrorInfo(element.getAttributeName(), "请填写至少" + min + "个字符"));
 			return false;
 		} 
 		
-		int length = element.getValue().length();
+		int length = element.getValue().toString().length();
 		if(min == max && length != min) {
-			context.addError(new ErrorMsg(element.getAttribute(), "请填写" + min + "个字符"));
+			context.addError(new ErrorInfo(element.getAttributeName(), "请填写" + min + "个字符"));
 			return false;
 		}
 		
 		if(min == INFINITY && length > max) {
-			context.addError(new ErrorMsg(element.getAttribute(), "请最多填写" + max + "个字符"));
+			context.addError(new ErrorInfo(element.getAttributeName(), "请最多填写" + max + "个字符"));
 			return false;
 		}
 		
 		if(max == INFINITY && length < min) {
-			context.addError(new ErrorMsg(element.getAttribute(), "请填写至少" + min + "个字符"));
+			context.addError(new ErrorInfo(element.getAttributeName(), "请填写至少" + min + "个字符"));
 			return false;
 		}
 		
 		if(max != INFINITY && min != INFINITY && (length < min || length > max)) {
-			context.addError(new ErrorMsg(element.getAttribute(), "请填写" + min + "到" + max + "个字符"));
+			context.addError(new ErrorInfo(element.getAttributeName(), "请填写" + min + "到" + max + "个字符"));
 			return false;
 		}
 		

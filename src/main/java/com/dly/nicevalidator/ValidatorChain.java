@@ -3,6 +3,8 @@ package com.dly.nicevalidator;
 import java.util.Iterator;
 import java.util.List;
 
+import com.dly.nicevalidator.domain.ValidatorElement;
+
 public class ValidatorChain {
 
 	private List<Validator> validators;
@@ -14,7 +16,7 @@ public class ValidatorChain {
 		this.iterator = validators.iterator();
 	}
 	
-	public <T> void validate(ValidatorContext context, ValidatorElement<T> element) {
+	public void validate(ValidatorContext context, ValidatorElement element) {
 		if(iterator.hasNext()) {
 			iterator.next().validate(context, this, element);
 		}
