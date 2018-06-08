@@ -38,7 +38,6 @@ java版本的nice-validator，参考了前端的校验框架[nice-validator](htt
 |match(gt, name)	    |当前字段值必须大于 name 字段值
 |match(lte, name)	    |当前字段值必须小于等于 name 字段值
 |match(gte, name)	    |当前字段值必须大于等于 name 字段值
-|match(gte, name, date)	|当前日期值必须大于等于 name 字段日期值
 
 ## integer
 
@@ -58,6 +57,12 @@ java版本的nice-validator，参考了前端的校验框架[nice-validator](htt
 |range(~n)		|请填写不大于 n 的数
 |range(n1~n2)	|请填写 n1 到 n2 的数
 |range(n1~n2, false)	|请填写 n1 到 n2 的数（不包含边界值）
+
+## regex
+
+|规则|描述
+|-|-
+|regex(expression)		|请填写符合格式的内容
 
 ## custom
 
