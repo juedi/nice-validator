@@ -1,7 +1,5 @@
 package com.dly.nicevalidator;
 
-import com.dly.nicevalidator.domain.ValidatorElement;
-
 /**
  * @typename Validator
  * @brief 验证器接口
@@ -12,5 +10,5 @@ import com.dly.nicevalidator.domain.ValidatorElement;
  */
 public interface Validator {
 
-	boolean validate(ValidatorContext context, ValidatorChain chain, ValidatorElement element);
+	boolean validate(ValidatorContext context, ValidateAttribute element);
 }

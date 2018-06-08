@@ -21,7 +21,7 @@ public class ValidatorContext {
      */
     private Map<String, Object> attributes;
     
-    private ValidateResult result = new ValidateResult();
+    private final ValidateResult result = new ValidateResult();
     
     /**
      * 获取属性
@@ -36,7 +36,7 @@ public class ValidatorContext {
     }
     
     /**
-     * 设置属性
+     * 添加属性到校验器上下文中 
      * @param key	键
      * @param value 值
      */
@@ -47,6 +47,10 @@ public class ValidatorContext {
         attributes.put(key, value);
     }
     
+    /**    
+     * @Description:        添加多个属性到校验器上下文中  
+     * @param attributes    属性集合
+     */
     public void addAttributes(Map<String, Object> attributes) {
         if (attributes == null) {
             attributes = new HashMap<>();
@@ -69,9 +73,4 @@ public class ValidatorContext {
 	public ValidateResult getResult() {
 		return result;
 	}
-
-	public void setResult(ValidateResult result) {
-		this.result = result;
-	}
-    
 }
